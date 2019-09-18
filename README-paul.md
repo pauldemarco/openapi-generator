@@ -17,4 +17,4 @@
 
 ## Run generator
 
-    java -jar ~/openapi-generator/modules/openapi-generator-cli/target/openapi-generator-cli.jar generate -g dart-autodata -i spec2.yaml -o out
+    java -jar ~/openapi-generator/modules/openapi-generator-cli/target/openapi-generator-cli.jar generate -g dart-autodata -i spec3.yaml -p pubName=<pub_name> -o out --skip-validate-spec

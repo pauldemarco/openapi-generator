@@ -46,6 +46,7 @@ public class DartAutodataClientCodegen extends DartClientCodegen {
         modelToIgnore.add("list");
         modelToIgnore.add("file");
         modelToIgnore.add("list<int>");
+        modelToIgnore.add("dynamic");
     }
 
     private static final String SERIALIZATION_JSON = "json";
@@ -109,6 +110,20 @@ public class DartAutodataClientCodegen extends DartClientCodegen {
             return "const []";
         }
         return super.toDefaultValue(p);
+    }
+
+    @Override
+    public String toAnyOfName(List<String> names, ComposedSchema composedSchema) {
+        String name = names.get(0);
+        if("object".equals(name) || "list".equals(name)) {
+            System.out.println("---------------");
+            names.forEach((n) -> System.out.println(n));
+            System.out.println(composedSchema.toString());
+            System.out.println("---------------");
+            return "dynamic";
+        }
+        
+        return name;
     }
 
     @Override

@@ -75,7 +75,7 @@ public class DartClientCodegen extends DefaultCodegen implements CodegenConfig {
                 Arrays.asList(
                         "abstract", "as", "assert", "async", "async*", "await",
                         "break", "case", "catch", "class", "const", "continue",
-                        "default", "deferred", "do", "dynamic", "else", "enum",
+                        "default", "deferred", "do", "else", "enum",
                         "export", "external", "extends", "factory", "false", "final",
                         "finally", "for", "get", "if", "implements", "import", "in",
                         "is", "library", "new", "null", "operator", "part", "rethrow",
@@ -92,7 +92,9 @@ public class DartClientCodegen extends DefaultCodegen implements CodegenConfig {
                         "num",
                         "double",
                         "List",
-                        "Object")
+                        "Object",
+                        "dynamic",
+                        "Map")
         );
         instantiationTypes.put("array", "List");
         instantiationTypes.put("map", "Map");
@@ -304,7 +306,16 @@ public class DartClientCodegen extends DefaultCodegen implements CodegenConfig {
 
         // camelize the model name
         // phone_number => PhoneNumber
-        return "$" + camelize(name);
+        if("dynamic".equals(name)) {
+            return name;
+        } else if("map".equals(name)) {
+            return "Map";
+        } else if(languageSpecificPrimitives.contains(camelize(name))) {
+            return camelize(name);
+        } else {
+            return "$" + camelize(name);
+        }
+        
     }
 
     @Override

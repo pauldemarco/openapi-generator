@@ -51,89 +51,21 @@ dependencies:
     path: /path/to/{{pubName}}
 ```
 
-## Tests
+## Regenerate with openapi-generator
 
-TODO
+### Checking out dart-autodata branch
 
-## Getting Started
+    git clone git@github.com:pauldemarco/openapi-generator
+    cd openapi-generator
+    git checkout dart-autodata
 
-Please follow the [installation procedure](#installation--usage) and then run the following:
+### Build CLI
 
-```dart
-import 'package:{{pubName}}/api.dart';
-{{#apiInfo}}{{#apis}}{{#-first}}{{#operations}}{{#operation}}{{#-first}}
-{{#hasAuthMethods}}
-{{#authMethods}}
-{{#isBasic}}
-// TODO Configure HTTP basic authorization: {{{name}}}
-//{{pubName}}.api.Configuration.username = 'YOUR_USERNAME';
-//{{pubName}}.api.Configuration.password = 'YOUR_PASSWORD';
-{{/isBasic}}
-{{#isApiKey}}
-// TODO Configure API key authorization: {{{name}}}
-//{{pubName}}.api.Configuration.apiKey{'{{{keyParamName}}}'} = 'YOUR_API_KEY';
-// uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-//{{pubName}}.api.Configuration.apiKeyPrefix{'{{{keyParamName}}}'} = "Bearer";
-{{/isApiKey}}
-{{#isOAuth}}
-// TODO Configure OAuth2 access token for authorization: {{{name}}}
-//{{pubName}}.api.Configuration.accessToken = 'YOUR_ACCESS_TOKEN';
-{{/isOAuth}}
-{{/authMethods}}
-{{/hasAuthMethods}}
+    mvn clean package -DskipTests
 
-final jaguarApiGen = {{clientName}}();
-var api_instance = jaguarApiGen.get{{classname}}();
-{{#allParams}}
-var {{paramName}} = {{#isListContainer}}[{{/isListContainer}}{{#isBodyParam}}new {{dataType}}(){{/isBodyParam}}{{^isBodyParam}}{{{example}}}{{/isBodyParam}}{{#isListContainer}}]{{/isListContainer}}; // {{{dataType}}} | {{{description}}}
-{{/allParams}}
+### Run generator
 
-try {
-    {{#returnType}}var result = {{/returnType}}api_instance.{{{operationId}}}({{#allParams}}{{paramName}}{{#hasMore}}, {{/hasMore}}{{/allParams}});
-    {{#returnType}}
-    print(result);
-    {{/returnType}}
-} catch (e) {
-    print("Exception when calling {{classname}}->{{operationId}}: $e\n");
-}
-{{/-first}}{{/operation}}{{/operations}}{{/-first}}{{/apis}}{{/apiInfo}}
-```
-
-## Documentation for API Endpoints
-
-All URIs are relative to *{{basePath}}*
-
-Class | Method | HTTP request | Description
------------- | ------------- | ------------- | -------------
-{{#apiInfo}}{{#apis}}{{#operations}}{{#operation}}*{{classname}}* | [**{{operationId}}**]({{apiDocPath}}/{{classname}}.md#{{operationIdLowerCase}}) | **{{httpMethod}}** {{path}} | {{#summary}}{{summary}}{{/summary}}
-{{/operation}}{{/operations}}{{/apis}}{{/apiInfo}}
-
-## Documentation For Models
-
-{{#models}}{{#model}} - [{{{classname}}}]({{modelDocPath}}/{{{classname}}}.md)
-{{/model}}{{/models}}
-
-## Documentation For Authorization
-
-{{^authMethods}} All endpoints do not require authorization.
-{{/authMethods}}{{#authMethods}}{{#last}} Authentication schemes defined for the API:{{/last}}{{/authMethods}}
-{{#authMethods}}## {{{name}}}
-
-{{#isApiKey}}- **Type**: API key
-- **API key parameter name**: {{{keyParamName}}}
-- **Location**: {{#isKeyInQuery}}URL query string{{/isKeyInQuery}}{{#isKeyInHeader}}HTTP header{{/isKeyInHeader}}
-{{/isApiKey}}
-{{#isBasic}}- **Type**: HTTP basic authentication
-{{/isBasic}}
-{{#isOAuth}}- **Type**: OAuth
-- **Flow**: {{{flow}}}
-- **Authorization URL**: {{{authorizationUrl}}}
-- **Scopes**: {{^scopes}}N/A{{/scopes}}
-{{#scopes}} - **{{{scope}}}**: {{{description}}}
-{{/scopes}}
-{{/isOAuth}}
-
-{{/authMethods}}
+    java -jar ~/openapi-generator/modules/openapi-generator-cli/target/openapi-generator-cli.jar generate -g dart-autodata -i spec2.yaml -p pubName={{pubName}} -o out
 
 ## Author
 
