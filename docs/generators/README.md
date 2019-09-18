@@ -15,6 +15,7 @@ The following generators are available:
     - [csharp-refactor](csharp-refactor.md)
     - [dart](dart.md)
     - [dart-jaguar](dart-jaguar.md)
+    - [dart-autodata](dart-autodata.md)
     - [eiffel](eiffel.md)
     - [elixir](elixir.md)
     - [elm](elm.md)

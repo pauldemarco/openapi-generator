@@ -1,0 +1,16 @@
+part '{{classFilename}}.g.dart';
+
+@data
+class {{classname}} {
+  {{#vars}}
+  {{#description}}/// {{{description}}}{{/description}}
+  {{#allowableValues}}
+  /// Allowed values: {{#min}}range from {{min}} to {{max}}{{/min}}{{^min}}enum {{name}}Enum { {{#values}} {{.}}, {{/values}} };{{/min}}{
+  {{/allowableValues}}
+  {{#isNullable}}
+  @nullable
+  {{/isNullable}}
+  {{#isFreeFormObject}}dynamic{{/isFreeFormObject}}{{^isFreeFormObject}}{{{dataType}}}{{/isFreeFormObject}} {{name}};
+
+  {{/vars}}
+}

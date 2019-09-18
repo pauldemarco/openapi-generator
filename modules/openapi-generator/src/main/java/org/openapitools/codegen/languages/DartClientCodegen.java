@@ -90,7 +90,9 @@ public class DartClientCodegen extends DefaultCodegen implements CodegenConfig {
                         "bool",
                         "int",
                         "num",
-                        "double")
+                        "double",
+                        "List",
+                        "Object")
         );
         instantiationTypes.put("array", "List");
         instantiationTypes.put("map", "Map");
@@ -302,12 +304,12 @@ public class DartClientCodegen extends DefaultCodegen implements CodegenConfig {
 
         // camelize the model name
         // phone_number => PhoneNumber
-        return camelize(name);
+        return "$" + camelize(name);
     }
 
     @Override
     public String toModelFilename(String name) {
-        return underscore(toModelName(name));
+        return underscore(toModelName(name).substring(1));
     }
 
     @Override

@@ -1,0 +1,6 @@
+library {{pubName}}.api;
+
+{{#apiInfo}}{{#apis}}import 'package:{{pubName}}/api/{{classFilename}}.dart';
+{{/apis}}{{/apiInfo}}
+{{#models}}{{#model}}import 'package:{{pubName}}/model/{{classFilename}}.dart';
+{{/model}}{{/models}}

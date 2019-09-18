@@ -20,6 +20,7 @@ The following generators are available:
 * [csharp-netcore](generators/csharp-netcore)  
 * [dart](generators/dart)  
 * [dart-jaguar](generators/dart-jaguar)  
+* [dart-autodata](generators/dart-autodata)  
 * [eiffel](generators/eiffel)  
 * [elixir](generators/elixir)  
 * [elm](generators/elm)  

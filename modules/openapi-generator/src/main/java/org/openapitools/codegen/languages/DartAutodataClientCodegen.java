@@ -29,7 +29,7 @@ import java.util.*;
 
 import static org.openapitools.codegen.utils.StringUtils.underscore;
 
-public class DartJaguarClientCodegen extends DartClientCodegen {
+public class DartAutodataClientCodegen extends DartClientCodegen {
     private static final String NULLABLE_FIELDS = "nullableFields";
     private static final String SERIALIZATION_FORMAT = "serialization";
     private static final String IS_FORMAT_JSON = "jsonFormat";
@@ -54,11 +54,11 @@ public class DartJaguarClientCodegen extends DartClientCodegen {
     private boolean nullableFields = true;
     private String serialization = SERIALIZATION_JSON;
 
-    public DartJaguarClientCodegen() {
+    public DartAutodataClientCodegen() {
         super();
         browserClient = false;
-        outputFolder = "generated-code/dart-jaguar";
-        embeddedTemplateDir = templateDir = "dart-jaguar";
+        outputFolder = "generated-code/dart-autodata";
+        embeddedTemplateDir = templateDir = "dart-autodata";
 
         cliOptions.add(new CliOption(NULLABLE_FIELDS, "Is the null fields should be in the JSON payload"));
         cliOptions.add(new CliOption(SERIALIZATION_FORMAT, "Choose serialization format JSON or PROTO is supported"));
@@ -93,12 +93,12 @@ public class DartJaguarClientCodegen extends DartClientCodegen {
 
     @Override
     public String getName() {
-        return "dart-jaguar";
+        return "dart-autodata";
     }
 
     @Override
     public String getHelp() {
-        return "Generates a Dart Jaguar client library.";
+        return "Generates a Dart AutoData client library.";
     }
 
     @Override
