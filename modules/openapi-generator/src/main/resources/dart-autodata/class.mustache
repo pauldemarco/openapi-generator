@@ -10,6 +10,11 @@ class {{classname}} {
   {{#isNullable}}
   @nullable
   {{/isNullable}}
+  {{^isNullable}}
+  {{^required}}
+  @nullable
+  {{/required}}
+  {{/isNullable}}
   {{#isFreeFormObject}}dynamic{{/isFreeFormObject}}{{^isFreeFormObject}}{{{dataType}}}{{/isFreeFormObject}} {{name}};
 
   {{/vars}}
